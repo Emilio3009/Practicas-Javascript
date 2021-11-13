@@ -1,0 +1,277 @@
+                                    QUE ES NODE.-
+    No es un lenguaje de programación.-
+    No es una libreria.-
+    No es un Framework.-
+    No es una sintaxis de Javascript.-
+    No es un servidor.-
+
+                                    QUE NO ES NODE.-
+    Node es un interprete de Javascript que nos permite ejecutar Javascript sin necesidad de un navegador.-
+    Los navegadores tienen un motor que interpretan Javascript.-
+    El más famoso es el V8 desarrollado por Google en C++.-
+    En el 2009 Ryan Dahl, extrae ese motor y hace que se ejecute de forma externa al navegador.-
+   
+
+                                    COMO FUNCIONA NODE.- 
+Cuando installamos node, instalamos el núcleo únicamente.-
+Para añadir funcionalidades extra a node, nos da un gestor de paquetes (npm o yarn).- ("Repositorios")
+Npm ya viene instalado con node.-
+Sea cual sea, utilizar el mismo siempre en el proyecto.
+En la terminal de node.js no existe el Dom ni el objeto Windows ya que no trabajamos sobre la consola del navegador.
+
+
+
+                                INSTALACIÓN DE NODE.JS
+
+1 .- Instalamos el paquete LTS más actualizado de la página de NODe.
+2 .- Creamos una carpeta para nuestro proyecto (si tiene más de una palabra, poner guión medio entre medias de las dos palabras)
+3 .- Arrastramos la carpeta hacía nuestra terminal o nos movemos a la misma a través de los directorios.
+4 .- Abrimos Visual Studio Code.
+5 .- Arrastramos nuestra carpeta creada al Visual Studio Code.
+6 .- Creamos el primer archivo que llamaremos app.js
+7 .- Probamos nuestro código:
+8 .- Abrimos una terminal de Visual Studio Code.
+9 .- Para ver lo que hemos escrito, tenemos que ejecutar en el terminal node ( y el nombre del archivo que queremos ejecutar, en este caso seía "node app", la terminación del archivo no hace falta ya que Javascript interpreta que es un archivo de .js por defecto.
+
+
+                                EL ARCHIVO PACKGE.JSON
+
+Este archivo es tan importante, que sin el mismo no podría hacer nada con Node.js
+Para crear el packagejson:
+-> Package-lock.json.- se encarga de realizar un seguimiento de las versiona que estamos utilizando y de que modulos depende esas dependencias.
+
+1 .- npm init entry point: (app.js) Es el punto de inicio desde donde comienza todo, normalmente en las aplicaciones node.js es nombre del archivo
+se llama es app.js es de donde arranca todo (servidor, dependencias y desde ahi se accede a todo lo demás) 
+2 .-/*MAYOR.MINOR.PATH  Smantic versioning (sistema de version)
+3 .- Una vez rellenado toda la información inicial, aparece el archivo package.json en nuestro panel de visual Studio Code.
+4 .- Si abrimos el archivo generado, podemos ver entre otras cosas el resumen de todo lo preguntado para generar el mismo.-
+
+La forma resumida para generar un archivo package.json es la siguiente:
+"npm init -y" o "npm init --yes"
+Respecto a la termianl de Node.js.- Para salir del servidor "control +C", para levantarlo "node + el nombre del archivo .js"
+
+
+                    DEPENDENCIAS  QUE SON Y TIPO DE DEPENDENCIAS (Producción vs Desarrollo)
+
+Que es una dependencia.- Cualquier archivo o cualquier variable que va a utilizar nuestro proyecto ya sea en la fase de desarrollo o en la fase de producción.-
+Cuando hacemos un npm install lo que único que se instalan son las dependencias de producción, Y NO las de desarrollo
+
+ Entorno-Dependencia de desarroyo.-
+Entorno de desarrollo.- Podría ser por ejemplo autoprefixer (prefijos propietarios de los navegadores, se añade al css para las propiedades nuevas que aun no están soportadas)
+ npm install --save-dev "dependencia"
+
+ Entorno-Dependencia de producción.-Entorno de Producción.- Todo el mundo ve y ya funciona.-
+En el archivo packagejson.- Instalamos las dependencias que instalamos de TERCEROS. Por ejemplo al instalar React, podria ser una dependencia de producción necesitamos que en el servidor este es codigo,
+
+
+ En el package.json se reflefan las dependencias de terceros no las que realizamos nosotros en el código.-
+
+Carpeta node_modules.- Aparece cuando instalamos alguna dependencia (modulo).-La carpeta node-modules nunca se sube al servidor:
+No hace falta y además es la carpeta que más pesa del proyecto
+Todas las dependencias necesarias están listadas en package.json y 
+si fuera necesario utilizarlas en el proyecto con solo hacer
+un npm install y ese npm install va instalar todas las dependencias 
+necesarias y se las bajará para tenerlas operativas.-
+
+Dentro de esta carpetas, hay otras carpetas que a su vez son dependencias de las que instalamos, si borramos la carpeta node_modules, nunca hay que compartir y nunca hay que subir a un servidor, no por seguridad si no porque pesa mucho y no hace falta para poner la aplicación en producción.-
+
+ Al hacer un npm install en la aplicación vuelve a cargar todas las dependencias del node_modules.-
+
+ package-lock.json.- Se encarga de llevar un seguimiento de las versiones las dependencias que instalamos y que modulos utilizan esas dependencias y que hacen cada una de ella. NO SE TOCA. UN HISTORIAL DE package.JSON Y NODE_MODULES.-
+
+
+
+                                        EJEMPLO CON LA LIBRERIA CHALK
+Para instalar dependencias vamos utilizar los comandos: "npm install" "y el nombre de la dependencia" .También se puede instalar con Yalp
+Con npm i chalk instalamos una librería para nuestra terminal de node.-
+
+const chalk = require("chalk");
+console.log(chalk.blue("Hello world!"));
+
+/* Carpetas que despues de la instalación aparecen 
+en la raiz de la carpeta node-modules -> Carpeta Chalk:
+
+
+
+
+
+
+
+                                    CREAR UN SERVIDOR CON NODE.JS.- 
+(visitar la pagina oficial de node.js donde se encuentra la documentacion). Dentro de esa pagína se encuentra muchas librerias que corresponden a la Api de Node, y son de las que disponemos por defecto solo con tener el node instalado, no es necesario hacer un npm install, ya que se encuentran instaladas. Para crear nuestro servidor, utilizaremos la libreria Http.
+
+
+    COMENZAMOS PROYECTO CON ESTE ARCHIVO TOTALMENTE LIMPIO
+
+INSTALANDO NUESTRO PRIMER servidor
+UTILIZANDO EL MODULO NATIVO http.-
+
+1 -> Requerir el módulo HTTP de node y guardarla en una constante
+
+const http = require("http");
+
+
+2 -> Guardar el servidor que vamos a crear en otra constante
+Esta es la sintaxis para crear un nuevo servidor, requieren dos parametros muy importantes:
+    request que es la petición
+    response que es la respuesta de ese servidor 
+    (se pueden abreviar con req y res)
+
+const server = http.createServer((request, response) => {
+
+//hacemos un console.log para saber si el servidor está conectado
+console.log("Un cliente se ha conectado");
+response.end("La conexión ha sido correcta"); 
+ }); 
+Entender cliente = Navegador
+
+
+En si (http.createServer() es una función que devuelve como parametro otra función
+
+Creamos una función para hacer que el servidor se prepare para recibir información (función server.listen())recibe dos parametros
+    Parametro 1 -> El puerto a través del que nos vamos a conectar, normalmente es el 3000
+    Parametro 2 -> El segundo es una función que se va ejecutar cuando el servidor esté listo para recibir peticiones
+
+server.listen(3000, () => {
+console.log("Servidor a la escucha y esperando conexiones");
+ });
+
+
+Para empezar proyecto escribir en la terminal 
+ npm init (inicia un proyecto en node  y crea  un 
+ (node package manager)npm
+
+
+////////const http = require('http);   
+const server = http.createServer(request, response)=>{
+console.log ('Un cliente se ha conectado');
+server.listen(3000, ()=> con{console.log('Servidor a la espera de conexiones')})///////
+
+
+Despues ejecutamos en la terminal node app, para levantar el servidor
+Tendría que poner en la console el mensaje 'Servidor a la espera de conexiones'
+Despues abrir un navegador el local apuntando al puerto que hemos referido para ver el mensaje del servidor: 'Servidor a la espera de conexiones'
+En principio no veremos nada, ya que no se ha cerrado ninguna petición y permanece a la espera, para ello paramos el navegador y le enviamos algo al navegador para certificar que la transmisión y conexión ha sido correcta y que podemos terminal el intercambio de datos
+res.end('la conexión ha sido correcta)     ----corrresponde a una conexión satifactoria y da la conexión por terminada.-
+se guardan cambios, se para el servidor con control c y arrancamos con node app
+
+
+
+
+
+INSTALANDO NUESTRO PRIMER servidor UTILIZANDO EL FRAMEWORK DE EXPRESS.-
+
+QUE ES EXPRESS.- Interactua con nuestro metodo http de forma sencilla.-
+instalamos Express en la terminal con npm install express
+
+const express = require('express');
+const app = express()
+
+app.listen(3000, ()=> {console.log('Servidor a la espera de conexiones')})
+
+Despues creamos el hecho del que el cliente se conecte a través de una ruta get y mandar un mensaje:
+
+Existe un metodo por cada caso de conexión que exite:
+get, post, push y delete.-
+
+app.get(ruta '/', (req, res)=> {
+    res.send('la conexión ha sido correcta')
+
+})
+paramos el servidor y lo volvemos a levantar
+abrimos el navegador en localhost en el puerto 3000
+
+
+        RESUMEN DEL CÓDIGO
+const express = require('express');
+const app = express()
+
+app.get(ruta '/', (req, res)=> {
+    res.send('la conexión ha sido correcta')
+})
+
+app.listen(3000, ()=> {
+    console.log('Servidor a la espera de conexiones')})
+
+
+
+
+CONFIGURAR RUTAS Y CONTRALADORES POR SEPARADO  DE NUESTRO ARCHIVO APP (MODULARIZAR)
+DIVIDIR EN DOS PARTES:
+1.- LA RUTA POR LA QUE ESTAMOS ACCEDIENDO
+2.- EL METODO O LA FUNCIÓN QUE SE VA A EJECUTAR CUANDO NOS CONECTEMOS POR ESA RUTA.
+
+Creamos una carpeta con el nombre src.-
+Src es la que va a contener todo el código fuente del servidor
+Por lo tando dentro de esa carpeta irá nuestro archivo principal app.js
+Dentro de la carpeta src vamos a crear otros dos:
+    Una para carpeta para las RUTAS (routes)
+    Otra capeta para la función que se va a ejecutar cuando entremos en esa ruta (controlador)(controllers).-
+
+A continuación hau que separar el siguiente código en dos archivos distintos:
+
+                
+
+
+En la carpeta routes, creamos un archivo con el nombre index.routes.js(si quisieramos hacer la típica web con tres páginas index, contacto, nosotros) seguir la nomenclatura anterior: contacto.routes.js y nosotros.routes.js.-
+
+En el archivo index.routes.js necesitamos express y app, pero en lugar de usar app vamos a utilizar un módulo que nos da express.-
+
+const express = require('express');
+const router = express.Router  ----sustituye a app, porque solo queremos controlar las rutas.-
+
+Despues cortamos el codigo 
+app.get(ruta '/', (req, res)=> {
+                    res.send('la conexión ha sido correcta')
+                })
+del archivo app.js y lo pegamos en index.routes.js despues de las contantes declaradas anteriormente, quedando así:
+
+const express = require('express');
+const router = express.Router
+app.get(ruta '/', (req, res)=> {
+    res.send('la conexión ha sido correcta')})
+
+sustituimos app por router, porque no tenemos app, quedando así:
+
+const express = require('express');
+const router = express.Router
+router.get(ruta '/', (req, res)=> {
+    res.send('la conexión ha sido correcta')})
+
+Por ultimo hay que conectar el archivo index.router.js con app.js:
+Exportamos el archivo y escribimos al final del archivo index.router.js:
+
+module.exports = router
+
+Con eso lo que estamos haciendo es que todo lo que está en router se exporte y se pueda utilizar en cualquier otro archivo.-
+
+Finalmente vamos al archivo app.js y tenemos que poner despues de las constantes declaradas de express y app lo siguiente:
+
+const routes = require('./routes/index.routes');  //con eso requerimos el archivo que estamos exportando.-
+
+y además como ya podemos utilizar porque tenemos lo mismo y podemos utilizar esa funionalidad, vamos a decirle a express que lo utilice:
+
+app.use(routes)
+
+quedando el archivo app.js así de momento:
+
+
+const express = require('express');
+const router = express.Router
+const app = ('express')
+const routes = require('./routes/index.routes'); 
+app.use(routes)
+app.listen(3000, ()=> {
+    console.log('Servidor a la espera de conexiones')
+})
+
+
+
+
+
+
+
+
+
+
+Instalacion de nodemon como dev  (--save-dev)
