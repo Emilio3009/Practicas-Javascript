@@ -9,4 +9,3 @@ if(semaforo == 'rojo'){
     console.log (`${nombre}, Adelante, puede pasar`)
 } else console.log (`${nombre},Ese color, no es un color del semaforo`);
 
-typeof(nombre);
